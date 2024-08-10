@@ -1,0 +1,14 @@
+/.github
+/bin/generate_disposable_email_blocklist.ts
+/disposable-email-domains
+/example
+/node_modules
+/src
+/test
+.editorconfig
+.tags
+jest.config.js
+tsconfig.json
+.prettierignore
+.prettierrc
+.gitmodules

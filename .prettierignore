@@ -1,0 +1,5 @@
+# Ignore artifacts:
+disposable-email-domains
+dist
+node_modules
+example/node_modules

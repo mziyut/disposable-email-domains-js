@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '19:00'
+      timezone: 'Asia/Tokyo'
+    assignees:
+      - 'mziyut'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '19:00'
+      timezone: 'Asia/Tokyo'
+    assignees:
+      - 'mziyut'
+  - package-ecosystem: 'gitsubmodule'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '19:00'
+      timezone: 'Asia/Tokyo'
+    assignees:
+      - 'mziyut'
