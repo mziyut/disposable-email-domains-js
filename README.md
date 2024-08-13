@@ -10,19 +10,13 @@ It is recommended to update the domains at [disposable-email-domains/disposable-
 ```js
 var disposableEmailDomains = require('disposable-email-domains-js');
 
-var filename = 'example.js';
-
-(async () => {
-  await disposableEmailDomains.isDisposableEmail('example@example.com'),
-})();
+disposableEmailDomains.isDisposableEmail('example@example.com'),
 ```
 
 ```js
 import { isDisposableEmail } from 'disposable-email-domains-js';
 
-(async () => {
-  await isDisposableEmail('example@example.com'),
-})();
+isDisposableEmail('example@example.com'),
 ```
 
 ## Ref
