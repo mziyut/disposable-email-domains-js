@@ -19,6 +19,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run test:jest
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   test_example:
     runs-on: ubuntu-latest
