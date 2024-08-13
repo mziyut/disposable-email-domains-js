@@ -10,13 +10,21 @@ It is recommended to update the domains at [disposable-email-domains/disposable-
 ```js
 var disposableEmailDomains = require('disposable-email-domains-js');
 
-disposableEmailDomains.isDisposableEmail('example@example.com'),
+disposableEmailDomains.isDisposableEmailDomain('example.com'); // return false
+disposableEmailDomains.isDisposableEmail('example@example.com'); // return false
+
+disposableEmailDomains.isDisposableEmailDomain('mailinator.com'); // return true
+disposableEmailDomains.isDisposableEmail('example@mailinator.com'); // return true
 ```
 
 ```js
 import { isDisposableEmail } from 'disposable-email-domains-js';
 
-isDisposableEmail('example@example.com'),
+isDisposableEmailDomain('example.com'); // return false
+isDisposableEmail('example@example.com'); // return false
+
+isDisposableEmailDomain('mailinator.com'); // return true
+isDisposableEmail('example@mailinator.com'); // return true
 ```
 
 ## Ref

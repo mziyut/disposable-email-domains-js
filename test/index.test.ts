@@ -8,6 +8,20 @@ describe('disposableEmailBlocklist', () => {
   });
 });
 
+describe('isDisposableEmailDomain', () => {
+  test('should return false for disposable domain', () => {
+    const result = isDisposableEmail('example.com');
+
+    expect(result).toBe(false);
+  });
+
+  test('should return true for disposable domain', () => {
+    const result = isDisposableEmail('mailinator.com');
+
+    expect(result).toBe(true);
+  });
+});
+
 describe('isDisposableEmail', () => {
   test('should return false for disposable email', () => {
     const result = isDisposableEmail('example@example.com');
