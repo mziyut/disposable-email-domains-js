@@ -5,7 +5,9 @@ export const disposableEmailBlocklist = (): string[] => {
 export const isDisposableEmailDomain = (domain: string): boolean => {
   const blocklist = disposableEmailBlocklist();
 
-  return blocklist.includes(domain);
+  const normalisedDomain = domain.trim().toLowerCase();
+
+  return blocklist.includes(normalisedDomain);
 };
 
 export const isDisposableEmail = (email: string): boolean => {
