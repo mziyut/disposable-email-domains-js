@@ -6,7 +6,7 @@ describe('disposableEmailBlocklist', () => {
 
     expect(Array.isArray(result)).toBe(true);
     expect(result.length).toBeGreaterThan(0);
-    expect(result.every(value => typeof value === 'string')).toBe(true);
+    expect(result.every((value) => typeof value === 'string')).toBe(true);
   });
 });
 
