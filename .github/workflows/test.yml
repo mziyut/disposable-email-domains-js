@@ -3,6 +3,8 @@ name: Test
 on:
   push:
 
+permissions:
+  contents: read
 jobs:
   test_jest:
     runs-on: ubuntu-latest
