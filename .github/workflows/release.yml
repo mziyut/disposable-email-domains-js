@@ -1,5 +1,9 @@
 name: Publish Package to npmjs
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   push:
     tags:
