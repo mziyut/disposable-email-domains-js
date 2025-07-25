@@ -18,7 +18,10 @@ disposableEmailDomains.isDisposableEmail('example@mailinator.com'); // return tr
 ```
 
 ```js
-import { isDisposableEmail } from 'disposable-email-domains-js';
+import {
+  isDisposableEmail,
+  isDisposableEmailDomain,
+} from 'disposable-email-domains-js';
 
 isDisposableEmailDomain('example.com'); // return false
 isDisposableEmail('example@example.com'); // return false
