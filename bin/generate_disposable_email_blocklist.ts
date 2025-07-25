@@ -1,5 +1,4 @@
-import { readFile } from 'node:fs/promises';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const disposableEmailBlocklist = async (): Promise<string[]> => {
   const content = await readFile(
