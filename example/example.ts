@@ -1,7 +1,7 @@
 import {
   disposableEmailBlocklist,
-  isDisposableEmailDomain,
   isDisposableEmail,
+  isDisposableEmailDomain,
 } from 'disposable-email-domains-js';
 
 const filename = 'example.ts';
