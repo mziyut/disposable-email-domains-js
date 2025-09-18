@@ -30,7 +30,15 @@ isDisposableEmailDomain('mailinator.com'); // return true
 isDisposableEmail('example@mailinator.com'); // return true
 ```
 
-## Updating the Domain List
+## Development & Contribution
+
+- Use TypeScript and Prettier for all code. Run `npm run lint` to check, `npm run lint:fix` to auto-fix.
+- All code and examples should pass `npm run build` and `npm run test`.
+- PRs and issues are welcome. For blocklist changes, contribute upstream first ([disposable-email-domains/disposable-email-domains](https://github.com/disposable-email-domains/disposable-email-domains))。
+
+## CI/CD
+
+GitHub Actions automatically run tests, lint, and build on all PRs and pushes. Domain list updates and package publishing are also automated.
 
 This repository generates `disposable_email_blocklist.json` from `disposable_email_blocklist.conf` of [disposable-email-domains/disposable-email-domains]. You can update the JSON file with the following command.
 
@@ -41,6 +49,18 @@ npm run generate:disposable_email_blocklist_json
 After updating the JSON file, please publish the NPM package. To publish, you can push the tag `v*.*.*` to release the NPM package.
 
 If you want to update the domain list, please make a pull request to [disposable-email-domains/disposable-email-domains]. When it is reflected in [disposable-email-domains/disposable-email-domains], it will also be reflected in this package.
+
+## Example Directory
+
+The `example/` directory contains sample code in both JavaScript and TypeScript. It serves as:
+
+- A reference for library consumers (see API usage examples)
+- Integration testing (run with `npm run test:example`)
+- A check to ensure the example code stays in sync with the main API
+
+## License
+
+This project and its data are licensed under CC0 1.0 Universal (public domain dedication).
 
 ## Ref
 
