@@ -1,4 +1,4 @@
-import { disposableEmailBlocklist, isDisposableEmail } from '../src/index';
+import { disposableEmailBlocklist, disposableEmailBlocklistSet, isDisposableEmail } from '../src/index';
 
 describe('disposableEmailBlocklist', () => {
   test('should return an array of strings', () => {
@@ -7,6 +7,24 @@ describe('disposableEmailBlocklist', () => {
     expect(Array.isArray(result)).toBe(true);
     expect(result.length).toBeGreaterThan(0);
     expect(result.every((value) => typeof value === 'string')).toBe(true);
+  });
+});
+
+describe('disposableEmailBlocklistSet', () => {
+  test('should return a Set of strings', () => {
+    const result = disposableEmailBlocklistSet();
+
+    expect(result instanceof Set).toBe(true);
+    expect(result.size).toBeGreaterThan(0);
+    expect(Array.from(result).every((value) => typeof value === 'string')).toBe(true);
+  });
+
+  test('should contain the same domains as disposableEmailBlocklist', () => {
+    const arrayResult = disposableEmailBlocklist();
+    const setResult = disposableEmailBlocklistSet();
+
+    expect(setResult.size).toBe(arrayResult.length);
+    expect(arrayResult.every((domain) => setResult.has(domain))).toBe(true);
   });
 });
 
