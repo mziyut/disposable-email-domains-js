@@ -23,7 +23,7 @@ jobs:
         with:
           ref: main
           submodules: recursive
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           cache: 'npm'
       - run: npm install
