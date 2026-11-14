@@ -1,0 +1,63 @@
+name: Update Domain List
+
+on:
+  schedule:
+    # 19:00 Asia/Tokyo
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update_domain_list:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          submodules: recursive
+
+      - name: Update disposable-email-domains submodule
+        run: git submodule update --remote disposable-email-domains
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Generate blocklist JSON and format
+        run: |
+          npm run generate:disposable_email_blocklist_json
+          npm run lint:fix
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run lint, build, and tests
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          npm run lint
+          npm run build
+          npm test
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: 'chore: update domain list'
+          title: 'chore: update domain list'
+          branch: chore/update-domain-list
+          delete-branch: true
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          reviewers: mziyut
