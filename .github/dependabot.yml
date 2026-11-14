@@ -16,11 +16,3 @@ updates:
       timezone: 'Asia/Tokyo'
     assignees:
       - 'mziyut'
-  - package-ecosystem: 'gitsubmodule'
-    directory: '/'
-    schedule:
-      interval: 'daily'
-      time: '19:00'
-      timezone: 'Asia/Tokyo'
-    assignees:
-      - 'mziyut'
