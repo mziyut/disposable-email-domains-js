@@ -18,6 +18,11 @@ console.log(
   'it return true ->',
   isDisposableEmailDomain('mailinator.com'),
 );
+console.log(
+  filename,
+  'it return true ->',
+  isDisposableEmailDomain('sub.mailinator.com'),
+);
 
 console.log(
   filename,
@@ -28,4 +33,9 @@ console.log(
   filename,
   'it return true ->',
   isDisposableEmail('example@mailinator.com'),
+);
+console.log(
+  filename,
+  'it return true ->',
+  isDisposableEmail('example@sub.mailinator.com'),
 );

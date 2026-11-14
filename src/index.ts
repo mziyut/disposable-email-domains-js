@@ -23,7 +23,8 @@ export const disposableEmailBlocklistSet = (): Set<string> => {
 /**
  * Checks if a given domain is a disposable email domain.
  *
- * The check is case-insensitive and trims whitespace.
+ * The check is case-insensitive, trims whitespace, and also matches
+ * subdomains of blocklisted domains (excluding TLD-only segments).
  *
  * @param domain - The domain to check (e.g., "example.com")
  * @returns `true` if the domain is disposable, `false` otherwise
@@ -32,14 +33,23 @@ export const isDisposableEmailDomain = (domain: string): boolean => {
   const blocklist = disposableEmailBlocklistSet();
 
   const normalisedDomain = domain.trim().toLowerCase();
+  const parts = normalisedDomain.split('.');
 
-  return blocklist.has(normalisedDomain);
+  // Check the domain and each parent domain, excluding the TLD (last segment)
+  for (let i = 0; i < parts.length - 1; i++) {
+    if (blocklist.has(parts.slice(i).join('.'))) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 /**
  * Checks if a given email address uses a disposable email domain.
  *
- * The check is case-insensitive and trims whitespace from the domain part.
+ * The check is case-insensitive, trims whitespace from the domain part,
+ * and also matches subdomains of blocklisted domains.
  *
  * @param email - The email address to check (e.g., "user@example.com")
  * @returns `true` if the email uses a disposable domain, `false` otherwise

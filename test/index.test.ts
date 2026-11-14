@@ -2,6 +2,7 @@ import {
   disposableEmailBlocklist,
   disposableEmailBlocklistSet,
   isDisposableEmail,
+  isDisposableEmailDomain,
 } from '../src/index';
 
 describe('disposableEmailBlocklist', () => {
@@ -82,6 +83,44 @@ describe('isDisposableEmailDomain', () => {
 
     expect(result).toBe(true);
   });
+
+  test('should return true for root disposable domain', () => {
+    expect(isDisposableEmailDomain('mailinator.com')).toBe(true);
+  });
+
+  test('should return true for single-level subdomain of disposable domain', () => {
+    expect(isDisposableEmailDomain('sub.mailinator.com')).toBe(true);
+  });
+
+  test('should return true for multi-level subdomain of disposable domain', () => {
+    expect(isDisposableEmailDomain('a.b.c.mailinator.com')).toBe(true);
+  });
+
+  test('should return true for subdomain with capitalisation and surrounding whitespace', () => {
+    expect(isDisposableEmailDomain(' SUB.Mailinator.COM ')).toBe(true);
+  });
+
+  test('should return false for domain with partial suffix match', () => {
+    expect(isDisposableEmailDomain('examplemailinator.com')).toBe(false);
+  });
+
+  test('should return false for legitimate domains and subdomains', () => {
+    expect(isDisposableEmailDomain('gmail.com')).toBe(false);
+    expect(isDisposableEmailDomain('mail.google.com')).toBe(false);
+  });
+
+  test('should return false for TLD-only or empty inputs', () => {
+    expect(isDisposableEmailDomain('com')).toBe(false);
+    expect(isDisposableEmailDomain('')).toBe(false);
+    expect(isDisposableEmailDomain('   ')).toBe(false);
+  });
+
+  test('should handle leading or trailing dots safely', () => {
+    expect(isDisposableEmailDomain('.mailinator.com')).toBe(true);
+    expect(isDisposableEmailDomain('mailinator.com.')).toBe(false);
+    expect(isDisposableEmailDomain('.com')).toBe(false);
+    expect(isDisposableEmailDomain('com.')).toBe(false);
+  });
 });
 
 describe('isDisposableEmail', () => {
@@ -131,5 +170,15 @@ describe('isDisposableEmail', () => {
     const result = isDisposableEmail('example@zzz.com ');
 
     expect(result).toBe(true);
+  });
+
+  test('should return true for email with subdomain of disposable domain', () => {
+    expect(isDisposableEmail('user@sub.mailinator.com')).toBe(true);
+    expect(isDisposableEmail('user@a.b.c.mailinator.com')).toBe(true);
+  });
+
+  test('should return false for email with non-disposable subdomain or partial match', () => {
+    expect(isDisposableEmail('user@examplemailinator.com')).toBe(false);
+    expect(isDisposableEmail('user@mail.google.com')).toBe(false);
   });
 });
