@@ -14,7 +14,9 @@ disposableEmailDomains.isDisposableEmailDomain('example.com'); // return false
 disposableEmailDomains.isDisposableEmail('example@example.com'); // return false
 
 disposableEmailDomains.isDisposableEmailDomain('mailinator.com'); // return true
+disposableEmailDomains.isDisposableEmailDomain('sub.mailinator.com'); // return true
 disposableEmailDomains.isDisposableEmail('example@mailinator.com'); // return true
+disposableEmailDomains.isDisposableEmail('example@sub.mailinator.com'); // return true
 ```
 
 ```js
@@ -27,7 +29,9 @@ isDisposableEmailDomain('example.com'); // return false
 isDisposableEmail('example@example.com'); // return false
 
 isDisposableEmailDomain('mailinator.com'); // return true
+isDisposableEmailDomain('sub.mailinator.com'); // return true
 isDisposableEmail('example@mailinator.com'); // return true
+isDisposableEmail('example@sub.mailinator.com'); // return true
 ```
 
 ## Development & Contribution

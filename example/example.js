@@ -14,6 +14,11 @@ console.log(
   'it return true ->',
   disposableEmailDomains.isDisposableEmailDomain('mailinator.com'),
 );
+console.log(
+  filename,
+  'it return true ->',
+  disposableEmailDomains.isDisposableEmailDomain('sub.mailinator.com'),
+);
 
 console.log(
   filename,
@@ -24,4 +29,9 @@ console.log(
   filename,
   'it return true ->',
   disposableEmailDomains.isDisposableEmail('example@mailinator.com'),
+);
+console.log(
+  filename,
+  'it return true ->',
+  disposableEmailDomains.isDisposableEmail('example@sub.mailinator.com'),
 );
