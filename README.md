@@ -38,7 +38,7 @@ isDisposableEmail('example@sub.mailinator.com'); // return true
 
 - Use TypeScript and Prettier for all code. Run `npm run lint` to check, `npm run lint:fix` to auto-fix.
 - All code and examples should pass `npm run build` and `npm run test`.
-- PRs and issues are welcome. For blocklist changes, contribute upstream first ([disposable-email-domains/disposable-email-domains](https://github.com/disposable-email-domains/disposable-email-domains))。
+- PRs and issues are welcome. For blocklist changes, contribute upstream first ([disposable-email-domains/disposable-email-domains](https://github.com/disposable-email-domains/disposable-email-domains)).
 
 ## CI/CD
 
