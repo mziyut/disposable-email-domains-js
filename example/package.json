@@ -4,8 +4,9 @@
   "description": "",
   "main": "example.js",
   "scripts": {
-    "test": "npm run test:js && npm run test:ts",
+    "test": "npm run test:js && npm run test:mjs && npm run test:ts",
     "test:js": "node example.js",
+    "test:mjs": "node example.mjs",
     "test:ts": "tsx example.ts"
   },
   "author": "Yuta Mizui <mziyut.dev@gmail.com>",

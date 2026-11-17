@@ -9,18 +9,30 @@
     "blocklist",
     "temporary-email"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "lint": "prettier --check . && tsc --noEmit",
+    "build": "rm -rf dist && tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
+    "lint": "prettier --check . && tsc -p tsconfig.json --noEmit && tsc -p tsconfig.esm.json --noEmit",
     "lint:fix": "prettier --write .",
     "prepare": "npm run build",
-    "postbuild": "npm run postbuild:copy_disposable_email_blocklist_json",
-    "postbuild:copy_disposable_email_blocklist_json": "mkdir -p dist/dict && cp src/dict/disposable_email_blocklist.json dist/dict/disposable_email_blocklist.json",
+    "postbuild": "ts-node bin/postbuild.ts",
     "test": "npm run test:jest && npm run test:example",
     "test:jest": "jest --coverage --reporters=jest-junit",
     "test:example": "cd example && npm install && npm run test",

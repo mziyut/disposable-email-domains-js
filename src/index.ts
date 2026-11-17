@@ -1,10 +1,12 @@
+import blocklist from './dict/disposable_email_blocklist.json';
+
 /**
  * Returns the list of disposable email domains as an array.
  *
  * @returns An array of disposable email domain strings
  */
 export const disposableEmailBlocklist = (): string[] => {
-  return require('./dict/disposable_email_blocklist.json');
+  return blocklist;
 };
 
 let cachedBlocklistSet: Set<string> | null = null;
