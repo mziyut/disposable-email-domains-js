@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 
 const main = async () => {
   await mkdir('dist/cjs/dict', { recursive: true });
@@ -26,6 +26,7 @@ const main = async () => {
     'dist/esm/dict/disposable_email_blocklist.js',
     `export default ${jsonContent.trimEnd()};\n`,
   );
+  await rm('dist/esm/dict/disposable_email_blocklist.json', { force: true });
 
   const esmIndex = await readFile('dist/esm/index.js', { encoding: 'utf-8' });
   await writeFile(
