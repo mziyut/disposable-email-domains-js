@@ -188,4 +188,16 @@ describe('isDisposableEmail', () => {
     expect(isDisposableEmail('user@examplemailinator.com')).toBe(false);
     expect(isDisposableEmail('user@mail.google.com')).toBe(false);
   });
+
+  test('should return false for inputs without @ or with multiple @', () => {
+    expect(isDisposableEmail('mailinator.com')).toBe(false);
+    expect(isDisposableEmail('')).toBe(false);
+    expect(isDisposableEmail('a@b@mailinator.com')).toBe(false);
+  });
+
+  test('should return false for emails with empty local or domain part', () => {
+    expect(isDisposableEmail('@mailinator.com')).toBe(false);
+    expect(isDisposableEmail('   @mailinator.com')).toBe(false);
+    expect(isDisposableEmail('user@')).toBe(false);
+  });
 });

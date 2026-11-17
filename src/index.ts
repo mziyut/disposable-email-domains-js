@@ -64,7 +64,16 @@ export const isDisposableEmailDomain = (domain: string): boolean => {
  * @returns `true` if the email uses a disposable domain, `false` otherwise
  */
 export const isDisposableEmail = (email: string): boolean => {
-  const domain = email.split('@').reverse()[0];
+  const atIndex = email.indexOf('@');
+  if (atIndex === -1 || atIndex !== email.lastIndexOf('@')) {
+    return false;
+  }
+
+  if (email.slice(0, atIndex).trim() === '') {
+    return false;
+  }
+
+  const domain = email.slice(atIndex + 1);
 
   return isDisposableEmailDomain(domain);
 };
