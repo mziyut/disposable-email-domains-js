@@ -7,6 +7,16 @@ export const disposableEmailBlocklist = (): string[] => {
   return require('./dict/disposable_email_blocklist.json');
 };
 
+let cachedBlocklistSet: Set<string> | null = null;
+
+const getCachedBlocklistSet = (): Set<string> => {
+  if (cachedBlocklistSet === null) {
+    cachedBlocklistSet = new Set(disposableEmailBlocklist());
+  }
+
+  return cachedBlocklistSet;
+};
+
 /**
  * Returns the list of disposable email domains as a Set for efficient lookups.
  *
@@ -16,8 +26,7 @@ export const disposableEmailBlocklist = (): string[] => {
  * @returns A Set of disposable email domain strings
  */
 export const disposableEmailBlocklistSet = (): Set<string> => {
-  const blocklist = disposableEmailBlocklist();
-  return new Set(blocklist);
+  return new Set(getCachedBlocklistSet());
 };
 
 /**
@@ -30,7 +39,7 @@ export const disposableEmailBlocklistSet = (): Set<string> => {
  * @returns `true` if the domain is disposable, `false` otherwise
  */
 export const isDisposableEmailDomain = (domain: string): boolean => {
-  const blocklist = disposableEmailBlocklistSet();
+  const blocklist = getCachedBlocklistSet();
 
   const normalisedDomain = domain.trim().toLowerCase();
   const parts = normalisedDomain.split('.');
