@@ -6,7 +6,10 @@ const disposableEmailBlocklist = async (): Promise<string[]> => {
     { encoding: 'utf-8' },
   );
 
-  return content.split('\n').filter((line) => line !== '');
+  return content
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line !== '');
 };
 
 const main = async () => {
@@ -14,8 +17,11 @@ const main = async () => {
 
   await writeFile(
     'src/dict/disposable_email_blocklist.json',
-    JSON.stringify(blocklist, null, 2),
+    `${JSON.stringify(blocklist, null, 2)}\n`,
   );
 };
 
-main();
+main().catch((error: unknown) => {
+  console.error(error);
+  process.exitCode = 1;
+});
