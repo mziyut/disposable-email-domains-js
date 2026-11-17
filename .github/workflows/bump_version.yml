@@ -48,6 +48,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
+          draft: true
           commit-message: 'chore: bump version to ${{ steps.bump.outputs.version }}'
           title: 'chore: release ${{ steps.bump.outputs.version }}'
           branch: chore/bump-version
