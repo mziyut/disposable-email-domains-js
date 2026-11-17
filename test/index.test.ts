@@ -37,49 +37,49 @@ describe('disposableEmailBlocklistSet', () => {
 
 describe('isDisposableEmailDomain', () => {
   test('should return false for non-disposable domain', () => {
-    const result = isDisposableEmail('example.com');
+    const result = isDisposableEmailDomain('example.com');
 
     expect(result).toBe(false);
   });
 
   test('should return true for disposable domain', () => {
-    const result = isDisposableEmail('mailinator.com');
+    const result = isDisposableEmailDomain('mailinator.com');
 
     expect(result).toBe(true);
   });
 
   test('should return false for non-disposable domain with capitalisation', () => {
-    const result = isDisposableEmail('example.com');
+    const result = isDisposableEmailDomain('Example.com');
 
     expect(result).toBe(false);
   });
 
   test('should return true for disposable domain with capitalisation', () => {
-    const result = isDisposableEmail('Mailinator.com');
+    const result = isDisposableEmailDomain('Mailinator.com');
 
     expect(result).toBe(true);
   });
 
   test('should return false for non-disposable domain with leading whitespace', () => {
-    const result = isDisposableEmail(' example.com');
+    const result = isDisposableEmailDomain(' example.com');
 
     expect(result).toBe(false);
   });
 
   test('should return true for disposable domain with leading whitespace', () => {
-    const result = isDisposableEmail(' mailinator.com');
+    const result = isDisposableEmailDomain(' mailinator.com');
 
     expect(result).toBe(true);
   });
 
   test('should return false for non-disposable domain with trailing whitespace', () => {
-    const result = isDisposableEmail('example.com ');
+    const result = isDisposableEmailDomain('example.com ');
 
     expect(result).toBe(false);
   });
 
   test('should return true for disposable domain with trailing whitespace', () => {
-    const result = isDisposableEmail('mailinator.com ');
+    const result = isDisposableEmailDomain('mailinator.com ');
 
     expect(result).toBe(true);
   });
