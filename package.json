@@ -1,7 +1,14 @@
 {
   "name": "disposable-email-domains-js",
   "version": "2.1.0",
-  "description": "",
+  "description": "Determine whether an email address or domain is disposable.",
+  "keywords": [
+    "disposable",
+    "email",
+    "domain",
+    "blocklist",
+    "temporary-email"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -12,9 +19,9 @@
     "lint": "prettier --check . && tsc --noEmit",
     "lint:fix": "prettier --write .",
     "prepare": "npm run build",
-    "postbuild": "run-s postbuild:copy_disposable_email_blocklist_json",
+    "postbuild": "npm run postbuild:copy_disposable_email_blocklist_json",
     "postbuild:copy_disposable_email_blocklist_json": "mkdir -p dist/dict && cp src/dict/disposable_email_blocklist.json dist/dict/disposable_email_blocklist.json",
-    "test": "run-p test:*",
+    "test": "npm run test:jest && npm run test:example",
     "test:jest": "jest --coverage --reporters=jest-junit",
     "test:example": "cd example && npm install && npm run test",
     "generate:disposable_email_blocklist_json": "ts-node bin/generate_disposable_email_blocklist.ts"
@@ -34,7 +41,6 @@
     "@types/node": "^26.6.1",
     "jest": "^30.0.4",
     "jest-junit": "^17.0.0",
-    "npm-run-all": "^4.1.5",
     "prettier": "3.10.1",
     "prettier-plugin-organize-imports": "^4.2.0",
     "ts-jest": "^29.2.4",
