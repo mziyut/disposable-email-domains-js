@@ -33,6 +33,13 @@ describe('disposableEmailBlocklistSet', () => {
     expect(setResult.size).toBe(arrayResult.length);
     expect(arrayResult.every((domain) => setResult.has(domain))).toBe(true);
   });
+
+  test('mutating the returned Set should not affect isDisposableEmailDomain', () => {
+    const setResult = disposableEmailBlocklistSet();
+    setResult.delete('mailinator.com');
+
+    expect(isDisposableEmailDomain('mailinator.com')).toBe(true);
+  });
 });
 
 describe('isDisposableEmailDomain', () => {
