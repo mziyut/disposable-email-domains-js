@@ -1,6 +1,6 @@
 {
   "name": "disposable-email-domains-js",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Determine whether an email address or domain is disposable.",
   "keywords": [
     "disposable",
